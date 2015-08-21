@@ -1,0 +1,33 @@
+{
+    "name": "crazy-ivy",
+    "version": "0.2.1",
+    "description": "A 2D canvas game",
+    "main": "src/engine/core.js",
+    "scripts": {
+        "start": "npm run server & npm run watch & npm run watchify",
+        "watch": "npm run watchImageAssets & npm run watchDataAssets & npm run watchEntities & npm run watchScenes & npm run watchAudioAssets",
+        "watchAssets": "npm run watchImageAssets & npm run watchDataAssets",
+        "watchImageAssets": "watch --no-title ./src/tools/assetsWatcher.js ./images",
+        "watchDataAssets": "watch --no-title ./src/tools/assetsWatcher.js ./data",
+        "watchAudioAssets": "watch --no-title ./src/tools/assetsWatcher.js ./audio",
+        "watchEntities": "watch --no-title ./src/tools/entitiesWatcher.js ./src/entities",
+        "watchScenes": "watch --no-title ./src/tools/scenesWatcher.js ./src/scenes",
+        "assets": "./src/tools/assetsWatcher.js",
+        "entities": "./src/tools/entitiesWatcher.js",
+        "scenes": "./src/tools/scenesWatcher.js",
+        "server": "browser-sync start --server --files './ox.js'",
+        "watchify": "watchify src/engine/core.js -o ./ox.js -v -d",
+        "build": "browserify src/engine/core.js -o ./ox.js",
+        "deploy": "npm run assets && npm run scenes && npm run entities && npm run build && uglifyjs ./ox.js -mc -o game.js"
+    },
+    "author": "Vincent Lark, framework by Otto Robba",
+    "license": "MIT",
+    "devDependencies": {
+        "browser-sync": "^2.6.1",
+        "browserify": "^9.0.8",
+        "fs": "0.0.2",
+        "uglify-js": "^2.4.20",
+        "watch": "^0.16.0",
+        "watchify": "^3.1.0"
+    }
+}
